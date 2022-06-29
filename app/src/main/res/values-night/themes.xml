@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MaterialComponents.DayNight.NoActionBar." parent="@android:style/Theme.Material.NoActionBar" />
+
+    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">#EA6d7E</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+    </style>
+</resources>

@@ -1,0 +1,20 @@
+package com.damian.weightliftingtracker.core.utli
+
+object TestTags {
+
+    const val ORDER_SECTION = "ORDER_SECTION"
+    const val EDIT_DELETE_MENU_SECTION = "EDIT_DELETE_MENU_SECTION"
+    const val EXERCISE_MENU_SECTION = "EXERCISE MENU SECTION"
+    const val NAME_TEXT_FIELD = "NAME_TEXT_FIELD"
+    const val DESC_TEXT_FIELD = "DESC_TEXT_FIELD"
+    const val ALERT_DIALOG_SECTION = "ALERT_DIALOG_SECTION"
+    const val PLANS_MODAL_BOTTOM_SHEET_LAYOUT = "PLANS_MODAL_BOTTOM_SHEET_LAYOUT"
+    const val VOLUME_TEST_TAG = "VOLUME_TEST_TAG"
+    const val VOLUME_PAUSE_TEST_TAG = "VOLUME_PAUSE_TEST_TAG"
+    const val WEIGHT_GOAL = "WEIGHT_GOAL"
+    const val REPS_GOAL = "REPS_GOAL"
+    const val PAUSE_GOAL = "PAUSE_GOAL"
+    const val WEIGHT_ACHIEVED = "WEIGHT_ACHIEVED"
+    const val REPS_ACHIEVED = "REPS_ACHIEVED"
+    const val PAUSE_ACHIEVED = "PAUSE_ACHIEVED"
+}

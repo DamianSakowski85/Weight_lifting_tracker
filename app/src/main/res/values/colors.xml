@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red700">#dd0d3c</color>
+    <color name="status_bar">#c20029</color>
+    <color name="goal">#D84315</color>
+    <color name="achieved">#2E7D32</color>
+    <color name="header_text">#D84315</color>
+    <color name="header_background">#E3E3E3</color>
+</resources>
