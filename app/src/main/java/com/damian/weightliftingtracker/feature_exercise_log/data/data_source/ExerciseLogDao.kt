@@ -34,7 +34,7 @@ interface ExerciseLogDao {
     suspend fun getLastSet(exerciseId: Int): ExerciseLog?
 
     @Query(
-        "SELECT date FROM _exercise_log WHERE exerciseId=:exerciseId"
+        "SELECT date FROM _exercise_log WHERE exerciseId=:exerciseId ORDER BY id DESC"
     )
     suspend fun getLastDate(exerciseId: Int) : String?
 }

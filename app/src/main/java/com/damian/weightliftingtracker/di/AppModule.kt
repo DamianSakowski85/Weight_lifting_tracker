@@ -84,7 +84,7 @@ class AppModule {
                 val plan = Plan(
                     planName = "Sample Full Body Workout",
                     planDescription = "3 whole body workouts per week",
-                    timestamp = 1
+                    timestamp = System.currentTimeMillis()
                 )
                 database.planDao.insert(plan)
 
