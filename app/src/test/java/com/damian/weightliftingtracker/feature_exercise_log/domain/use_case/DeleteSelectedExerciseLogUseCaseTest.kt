@@ -2,6 +2,7 @@ package com.damian.weightliftingtracker.feature_exercise_log.domain.use_case
 
 import com.damian.weightliftingtracker.feature_exercise_log.data.repository.FakeExerciseLogRepo
 import com.damian.weightliftingtracker.feature_exercise_log.domain.model.ExerciseLog
+import com.damian.weightliftingtracker.feature_exercise_log.domain.repository.ExerciseLogRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -12,12 +13,12 @@ import java.time.LocalDate
 class DeleteSelectedExerciseLogUseCaseTest {
 
     private lateinit var deleteSelectedExerciseLogUseCase: DeleteSelectedExerciseLogUseCase
-    private lateinit var fakeExerciseLogRepo: FakeExerciseLogRepo
+    private lateinit var exerciseLogRepo: ExerciseLogRepository
 
     @Before
     fun setup() {
-        fakeExerciseLogRepo = FakeExerciseLogRepo()
-        deleteSelectedExerciseLogUseCase = DeleteSelectedExerciseLogUseCase(fakeExerciseLogRepo)
+        exerciseLogRepo = FakeExerciseLogRepo()
+        deleteSelectedExerciseLogUseCase = DeleteSelectedExerciseLogUseCase(exerciseLogRepo)
     }
 
     @Test
@@ -33,14 +34,14 @@ class DeleteSelectedExerciseLogUseCaseTest {
             120,
             LocalDate.now().toString()
         )
-        fakeExerciseLogRepo.insert(log)
+        exerciseLogRepo.insert(log)
 
-        val logs = fakeExerciseLogRepo.getLogs(1,LocalDate.now().toString()).first()
+        val logs = exerciseLogRepo.getLogs(1,LocalDate.now().toString()).first()
         Assert.assertEquals(1,logs.size)
 
         deleteSelectedExerciseLogUseCase(log)
 
-        val logs1 = fakeExerciseLogRepo.getLogs(1,LocalDate.now().toString()).first()
+        val logs1 = exerciseLogRepo.getLogs(1,LocalDate.now().toString()).first()
         Assert.assertEquals(0,logs1.size)
     }
 }

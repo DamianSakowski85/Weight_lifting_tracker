@@ -36,51 +36,6 @@ class GetCalendarConstrainUseCase(
             }
             return CalendarConstraintsModel(calendarConstList, startDate, endDate, dates.last())
         }
-        /*
-        if (dates.isNotEmpty()) {
-            val startDate = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-            val endDate = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-
-            val years = ArrayList<Int>()
-            val months = ArrayList<MonthModel>()
-
-            dates.forEach {
-                val parsedDate = LocalDate.parse(it)
-
-                Log.i("test",parsedDate.dayOfMonth.toString())
-
-                val year = parsedDate.year
-                val month = parsedDate.monthValue - 1
-                val day = parsedDate.dayOfMonth
-
-                if (!years.contains(year)) {
-                    years.add(year)
-                }
-
-                if (months.size == 0) {
-                    val monthModel = MonthModel(month, days = ArrayList(day))
-                    months.add(monthModel)
-                }
-
-                if (months.size != 0 && months.last().month == month) {
-                    months.last().days.add(day)
-                } else if (months.size != 0 && months.last().month != month) {
-                    val monthModel = MonthModel(month, days = ArrayList(day))
-                    months.add(monthModel)
-                }
-
-                if (it == dates.first()) {
-                    startDate.set(year, month, day)
-                }
-                if (it == dates.last()) {
-                    endDate.set(year, month, day)
-                }
-            }
-
-            return CalendarConstraintsModel(years, months, startDate, endDate, dates.last())
-        }
-
-         */
         return null
     }
 }

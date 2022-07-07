@@ -2,6 +2,7 @@ package com.damian.weightliftingtracker.feature_exercise.domain.use_case
 
 import com.damian.weightliftingtracker.feature_exercise.data.repository.FakeExerciseRepository
 import com.damian.weightliftingtracker.feature_exercise.domain.model.Exercise
+import com.damian.weightliftingtracker.feature_exercise.domain.repository.ExerciseRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -9,16 +10,16 @@ import org.junit.Before
 import org.junit.Test
 
 class GetExercisesUseCaseTest {
-    private lateinit var fakeExerciseRepository: FakeExerciseRepository
+    private lateinit var exerciseRepository: ExerciseRepository
     private lateinit var getExercisesUseCase: GetExercisesUseCase
 
     @Before
     fun setup() = runBlocking{
-        fakeExerciseRepository = FakeExerciseRepository()
-        getExercisesUseCase = GetExercisesUseCase(fakeExerciseRepository)
+        exerciseRepository = FakeExerciseRepository()
+        getExercisesUseCase = GetExercisesUseCase(exerciseRepository)
 
         (1..5).forEachIndexed { index, c ->
-            fakeExerciseRepository.insertExercise(
+            exerciseRepository.insertExercise(
                 Exercise(
                     id = index,
                     1,

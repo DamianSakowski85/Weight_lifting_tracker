@@ -3,6 +3,7 @@ package com.damian.weightliftingtracker.feature_sessions.domain.use_case
 import com.damian.weightliftingtracker.feature_sessions.data.repository.FakeSessionRepository
 import com.damian.weightliftingtracker.feature_sessions.domain.model.InvalidSessionException
 import com.damian.weightliftingtracker.feature_sessions.domain.model.Session
+import com.damian.weightliftingtracker.feature_sessions.domain.repository.SessionRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
@@ -11,12 +12,12 @@ import org.junit.Test
 class AddSessionUseCaseTest {
 
     private lateinit var addSessionUseCase: AddSessionUseCase
-    private lateinit var testSessionRepository: FakeSessionRepository
+    private lateinit var sessionRepository: SessionRepository
 
     @Before
     fun setup() {
-        testSessionRepository = FakeSessionRepository()
-        addSessionUseCase = AddSessionUseCase(testSessionRepository)
+        sessionRepository = FakeSessionRepository()
+        addSessionUseCase = AddSessionUseCase(sessionRepository)
     }
 
     @Test(expected = InvalidSessionException::class)
@@ -40,6 +41,6 @@ class AddSessionUseCaseTest {
         )
         addSessionUseCase(sessionToInsert)
 
-        Assert.assertEquals(sessionToInsert, testSessionRepository.getSessionById(1))
+        Assert.assertEquals(sessionToInsert, sessionRepository.getSessionById(1))
     }
 }

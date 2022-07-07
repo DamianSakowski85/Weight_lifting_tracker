@@ -3,6 +3,7 @@ package com.damian.weightliftingtracker.feature_plans.domain.use_case
 import com.damian.weightliftingtracker.feature_plans.data.data_source.PlanSortPreferences
 import com.damian.weightliftingtracker.feature_plans.data.repository.FakePlanRepository
 import com.damian.weightliftingtracker.feature_plans.domain.model.Plan
+import com.damian.weightliftingtracker.feature_plans.domain.repository.PlanRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import com.google.common.truth.Truth.assertThat
@@ -13,12 +14,12 @@ import org.junit.Test
 class GetPlansUseCaseTest{
 
     private lateinit var getPlansUseCase: GetPlansUseCase
-    private lateinit var testPlanaRepository: FakePlanRepository
+    private lateinit var planaRepository: PlanRepository
 
     @Before
     fun setup(){
-        testPlanaRepository = FakePlanRepository()
-        getPlansUseCase = GetPlansUseCase(testPlanaRepository)
+        planaRepository = FakePlanRepository()
+        getPlansUseCase = GetPlansUseCase(planaRepository)
 
         val plansToInsert = mutableListOf<Plan>()
         ('a'..'z').forEachIndexed { index, c ->
@@ -35,14 +36,14 @@ class GetPlansUseCaseTest{
 
         runBlocking {
             plansToInsert.forEach {
-                testPlanaRepository.insertPlan(it)
+                planaRepository.insertPlan(it)
             }
         }
     }
 
     @Test
     fun `Order plans by name asc, correct order`() = runBlocking{
-        testPlanaRepository.updatePref(PlanSortPreferences(
+        planaRepository.updatePref(PlanSortPreferences(
             nameSelected = true,
             dateSelected = false,
             ascSelected = true,
@@ -57,7 +58,7 @@ class GetPlansUseCaseTest{
 
     @Test
     fun `Order plans by name desc, correct order`() = runBlocking{
-        testPlanaRepository.updatePref(PlanSortPreferences(
+        planaRepository.updatePref(PlanSortPreferences(
             nameSelected = true,
             dateSelected = false,
             ascSelected = false,
@@ -72,7 +73,7 @@ class GetPlansUseCaseTest{
 
     @Test
     fun `Order plans by date asc, correct order`() = runBlocking{
-        testPlanaRepository.updatePref(PlanSortPreferences(
+        planaRepository.updatePref(PlanSortPreferences(
             nameSelected = false,
             dateSelected = true,
             ascSelected = true,
@@ -87,7 +88,7 @@ class GetPlansUseCaseTest{
 
     @Test
     fun `Order plans by date desc, correct order`() = runBlocking{
-        testPlanaRepository.updatePref(PlanSortPreferences(
+        planaRepository.updatePref(PlanSortPreferences(
             nameSelected = false,
             dateSelected = true,
             ascSelected = false,

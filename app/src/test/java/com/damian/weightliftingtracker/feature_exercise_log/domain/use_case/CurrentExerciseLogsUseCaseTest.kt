@@ -2,6 +2,7 @@ package com.damian.weightliftingtracker.feature_exercise_log.domain.use_case
 
 import com.damian.weightliftingtracker.feature_exercise_log.data.repository.FakeExerciseLogRepo
 import com.damian.weightliftingtracker.feature_exercise_log.domain.model.ExerciseLog
+import com.damian.weightliftingtracker.feature_exercise_log.domain.repository.ExerciseLogRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -11,15 +12,15 @@ import java.time.LocalDate
 
 class CurrentExerciseLogsUseCaseTest {
 
-    private lateinit var fakeExerciseLogRepo: FakeExerciseLogRepo
+    private lateinit var exerciseLogRepo: ExerciseLogRepository
     private lateinit var currentExerciseLogsUseCase : CurrentExerciseLogsUseCase
     private val today = LocalDate.now().toString()
     private val yesterday = LocalDate.now().minusDays(1).toString()
 
     @Before
     fun setup() = runBlocking{
-        fakeExerciseLogRepo = FakeExerciseLogRepo()
-        currentExerciseLogsUseCase = CurrentExerciseLogsUseCase(fakeExerciseLogRepo)
+        exerciseLogRepo = FakeExerciseLogRepo()
+        currentExerciseLogsUseCase = CurrentExerciseLogsUseCase(exerciseLogRepo)
 
         val logsToInsert = mutableListOf<ExerciseLog>()
         (1..5).forEachIndexed { index, c ->
@@ -38,7 +39,7 @@ class CurrentExerciseLogsUseCaseTest {
             )
         }
         logsToInsert.forEach {
-            fakeExerciseLogRepo.insert(it)
+            exerciseLogRepo.insert(it)
         }
 
 
@@ -59,7 +60,7 @@ class CurrentExerciseLogsUseCaseTest {
             )
         }
         otherLogs.forEach {
-            fakeExerciseLogRepo.insert(it)
+            exerciseLogRepo.insert(it)
         }
     }
 

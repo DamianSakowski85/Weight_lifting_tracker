@@ -3,6 +3,7 @@ package com.damian.weightliftingtracker.feature_plans.domain.use_case
 import com.damian.weightliftingtracker.feature_plans.data.repository.FakePlanRepository
 import com.damian.weightliftingtracker.feature_plans.domain.model.InvalidPlanException
 import com.damian.weightliftingtracker.feature_plans.domain.model.Plan
+import com.damian.weightliftingtracker.feature_plans.domain.repository.PlanRepository
 import org.junit.Assert.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -11,12 +12,12 @@ import org.junit.Test
 class AddPlanUseCaseTest {
 
     private lateinit var addPlansUseCase: AddPlanUseCase
-    private lateinit var fakePlanRepository: FakePlanRepository
+    private lateinit var planRepository: PlanRepository
 
     @Before
     fun setup() {
-        fakePlanRepository = FakePlanRepository()
-        addPlansUseCase = AddPlanUseCase(fakePlanRepository)
+        planRepository = FakePlanRepository()
+        addPlansUseCase = AddPlanUseCase(planRepository)
     }
 
     @Test(expected = InvalidPlanException::class)
@@ -40,6 +41,6 @@ class AddPlanUseCaseTest {
         )
         addPlansUseCase(planToInsert)
 
-        assertEquals(planToInsert,fakePlanRepository.getPlanById(1))
+        assertEquals(planToInsert,planRepository.getPlanById(1))
     }
 }

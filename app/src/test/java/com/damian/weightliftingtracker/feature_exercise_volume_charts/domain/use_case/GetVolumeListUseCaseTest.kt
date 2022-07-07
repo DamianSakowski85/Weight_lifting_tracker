@@ -12,7 +12,7 @@ import java.time.LocalDate
 class GetVolumeListUseCaseTest {
 
     private lateinit var getVolumeListUseCase: GetVolumeListUseCase
-    private lateinit var fakeExerciseVolumeRepo: FakeExerciseVolumeRepo
+    private lateinit var exerciseVolumeRepo: FakeExerciseVolumeRepo
 
     private val testExerciseLog = ExerciseLog(
         id = 1,
@@ -39,11 +39,11 @@ class GetVolumeListUseCaseTest {
 
     @Before
     fun setup(){
-        fakeExerciseVolumeRepo = FakeExerciseVolumeRepo()
-        fakeExerciseVolumeRepo.addExerciseLogForTest(testExerciseLog)
-        fakeExerciseVolumeRepo.addExerciseLogForTest(secondTestExerciseLog)
+        exerciseVolumeRepo = FakeExerciseVolumeRepo()
+        exerciseVolumeRepo.addExerciseLogForTest(testExerciseLog)
+        exerciseVolumeRepo.addExerciseLogForTest(secondTestExerciseLog)
 
-        getVolumeListUseCase = GetVolumeListUseCase(fakeExerciseVolumeRepo)
+        getVolumeListUseCase = GetVolumeListUseCase(exerciseVolumeRepo)
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.damian.weightliftingtracker.feature_sessions.domain.use_case
 
 import com.damian.weightliftingtracker.feature_sessions.data.repository.FakeSessionRepository
 import com.damian.weightliftingtracker.feature_sessions.domain.model.Session
+import com.damian.weightliftingtracker.feature_sessions.domain.repository.SessionRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -11,12 +12,12 @@ import org.junit.Test
 class GetSessionsUseCaseTest {
 
     private lateinit var getSessionsUseCase: GetSessionsUseCase
-    private lateinit var testSessionRpository : FakeSessionRepository
+    private lateinit var sessionRpository : SessionRepository
 
     @Before
     fun setup(){
-        testSessionRpository = FakeSessionRepository()
-        getSessionsUseCase = GetSessionsUseCase(testSessionRpository)
+        sessionRpository = FakeSessionRepository()
+        getSessionsUseCase = GetSessionsUseCase(sessionRpository)
 
         val sessionToInsert = mutableListOf<Session>()
         (1..5).forEachIndexed { index, c ->
@@ -32,7 +33,7 @@ class GetSessionsUseCaseTest {
 
         runBlocking {
             sessionToInsert.forEach {
-                testSessionRpository.insertSession(it)
+                sessionRpository.insertSession(it)
             }
         }
     }

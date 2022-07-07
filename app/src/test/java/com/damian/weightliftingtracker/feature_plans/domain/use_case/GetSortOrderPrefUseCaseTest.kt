@@ -2,6 +2,7 @@ package com.damian.weightliftingtracker.feature_plans.domain.use_case
 
 import com.damian.weightliftingtracker.feature_plans.data.data_source.PlanSortPreferences
 import com.damian.weightliftingtracker.feature_plans.data.repository.FakePlanRepository
+import com.damian.weightliftingtracker.feature_plans.domain.repository.PlanRepository
 import com.damian.weightliftingtracker.feature_plans.domain.utli.OrderType
 import com.damian.weightliftingtracker.feature_plans.domain.utli.PlanOrder
 import org.junit.Assert.*
@@ -11,13 +12,13 @@ import org.junit.Before
 import org.junit.Test
 
 class GetSortOrderPrefUseCaseTest {
-    private lateinit var fakePlanRepository: FakePlanRepository
+    private lateinit var planRepository: PlanRepository
     private lateinit var getSortOrderFromPrefUseCase: GetSortOrderFromPrefUseCase
 
     @Before
     fun setup() = runBlocking {
-        fakePlanRepository = FakePlanRepository()
-        getSortOrderFromPrefUseCase = GetSortOrderFromPrefUseCase(fakePlanRepository)
+        planRepository = FakePlanRepository()
+        getSortOrderFromPrefUseCase = GetSortOrderFromPrefUseCase(planRepository)
     }
 
     @Test
@@ -28,7 +29,7 @@ class GetSortOrderPrefUseCaseTest {
             ascSelected = true,
             descSelected = false
         )
-        fakePlanRepository.updatePref(planSortPreferences)
+        planRepository.updatePref(planSortPreferences)
 
         val pref = getSortOrderFromPrefUseCase().first()
 
@@ -44,7 +45,7 @@ class GetSortOrderPrefUseCaseTest {
             ascSelected = false,
             descSelected = true
         )
-        fakePlanRepository.updatePref(planSortPreferences)
+        planRepository.updatePref(planSortPreferences)
 
         val pref = getSortOrderFromPrefUseCase().first()
 
@@ -60,7 +61,7 @@ class GetSortOrderPrefUseCaseTest {
             ascSelected = true,
             descSelected = false
         )
-        fakePlanRepository.updatePref(planSortPreferences)
+        planRepository.updatePref(planSortPreferences)
 
         val pref = getSortOrderFromPrefUseCase().first()
 
@@ -76,7 +77,7 @@ class GetSortOrderPrefUseCaseTest {
             ascSelected = false,
             descSelected = true
         )
-        fakePlanRepository.updatePref(planSortPreferences)
+        planRepository.updatePref(planSortPreferences)
 
         val pref = getSortOrderFromPrefUseCase().first()
 

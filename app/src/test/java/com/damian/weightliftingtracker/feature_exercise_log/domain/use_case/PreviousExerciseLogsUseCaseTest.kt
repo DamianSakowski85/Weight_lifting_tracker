@@ -2,6 +2,7 @@ package com.damian.weightliftingtracker.feature_exercise_log.domain.use_case
 
 import com.damian.weightliftingtracker.feature_exercise_log.data.repository.FakeExerciseLogRepo
 import com.damian.weightliftingtracker.feature_exercise_log.domain.model.ExerciseLog
+import com.damian.weightliftingtracker.feature_exercise_log.domain.repository.ExerciseLogRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -12,12 +13,12 @@ import java.time.LocalDate
 class PreviousExerciseLogsUseCaseTest {
 
     private lateinit var previousExerciseLogsUseCase: PreviousExerciseLogsUseCase
-    private lateinit var fakeExerciseLogRepo: FakeExerciseLogRepo
+    private lateinit var exerciseLogRepo: ExerciseLogRepository
 
     @Before
     fun setup() = runBlocking{
-        fakeExerciseLogRepo = FakeExerciseLogRepo()
-        previousExerciseLogsUseCase = PreviousExerciseLogsUseCase(fakeExerciseLogRepo)
+        exerciseLogRepo = FakeExerciseLogRepo()
+        previousExerciseLogsUseCase = PreviousExerciseLogsUseCase(exerciseLogRepo)
 
         val log1 = ExerciseLog(
             1,
@@ -42,8 +43,8 @@ class PreviousExerciseLogsUseCaseTest {
             120,
             LocalDate.now().toString()
         )
-        fakeExerciseLogRepo.insert(log1)
-        fakeExerciseLogRepo.insert(log2)
+        exerciseLogRepo.insert(log1)
+        exerciseLogRepo.insert(log2)
     }
 
     @Test

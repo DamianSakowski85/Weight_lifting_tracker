@@ -3,6 +3,7 @@ package com.damian.weightliftingtracker.feature_exercise.domain.use_case
 import com.damian.weightliftingtracker.feature_exercise.data.repository.FakeExerciseRepository
 import com.damian.weightliftingtracker.feature_exercise.domain.model.Exercise
 import com.damian.weightliftingtracker.feature_exercise.domain.model.InvalidExerciseException
+import com.damian.weightliftingtracker.feature_exercise.domain.repository.ExerciseRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
@@ -10,12 +11,12 @@ import org.junit.Test
 
 class AddExerciseUseCaseTest {
     private lateinit var addExerciseUseCase: AddExerciseUseCase
-    private lateinit var fakeExerciseRepository: FakeExerciseRepository
+    private lateinit var exerciseRepository: ExerciseRepository
 
     @Before
     fun setup() {
-        fakeExerciseRepository = FakeExerciseRepository()
-        addExerciseUseCase = AddExerciseUseCase(fakeExerciseRepository)
+        exerciseRepository = FakeExerciseRepository()
+        addExerciseUseCase = AddExerciseUseCase(exerciseRepository)
     }
 
     @Test(expected = InvalidExerciseException::class)
@@ -39,6 +40,6 @@ class AddExerciseUseCaseTest {
         )
         addExerciseUseCase(exercise)
 
-        Assert.assertEquals(exercise, fakeExerciseRepository.getExerciseById(1))
+        Assert.assertEquals(exercise, exerciseRepository.getExerciseById(1))
     }
 }

@@ -2,6 +2,7 @@ package com.damian.weightliftingtracker.feature_plans.domain.use_case
 
 import com.damian.weightliftingtracker.feature_plans.data.repository.FakePlanRepository
 import com.damian.weightliftingtracker.feature_plans.domain.model.Plan
+import com.damian.weightliftingtracker.feature_plans.domain.repository.PlanRepository
 import org.junit.Assert.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -9,7 +10,7 @@ import org.junit.Test
 
 class GetPlanByIdUseCaseTest {
     private lateinit var getPlanByIdUseCase: GetPlanByIdUseCase
-    private lateinit var fakePlanRepository: FakePlanRepository
+    private lateinit var planRepository: PlanRepository
 
     private val planToInsert = Plan(
         1,
@@ -20,11 +21,11 @@ class GetPlanByIdUseCaseTest {
 
     @Before
     fun setup() = runBlocking {
-        fakePlanRepository = FakePlanRepository()
-        getPlanByIdUseCase = GetPlanByIdUseCase(fakePlanRepository)
+        planRepository = FakePlanRepository()
+        getPlanByIdUseCase = GetPlanByIdUseCase(planRepository)
 
 
-        fakePlanRepository.insertPlan(planToInsert)
+        planRepository.insertPlan(planToInsert)
     }
 
     @Test
